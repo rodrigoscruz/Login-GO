@@ -30,5 +30,5 @@ func main() {
 
 	http.HandleFunc("/assets", style)
 
-	http.ListenAndServe(":80", nil)
+	http.ListenAndServe(":8080", nil)
 }
