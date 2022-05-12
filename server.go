@@ -9,7 +9,7 @@ import (
 func index(w http.ResponseWriter, r *http.Request){
 	fmt.Fprintf(w,`
 	<h1>Olá mundo!</h1>
-	<a href="./login">Login</a>
+	<a href="/login">Login</a>
 	`)
 }	
 
@@ -30,5 +30,5 @@ func main() {
 
 	http.HandleFunc("/assets", style)
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":80", nil)
 }
