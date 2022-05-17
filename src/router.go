@@ -1,10 +1,10 @@
 package router
 
-import(
+import (
 	"net/http"
 
+	account "localhost.com/account"
 	login "localhost.com/login"
-	accont "localhost.com/account"
 )
 
 func HandleRoutes() {
