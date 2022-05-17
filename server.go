@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"fmt"
+	"localhost.com/router"
 )
 
 
@@ -18,17 +19,33 @@ func login(w http.ResponseWriter, r *http.Request){
 	http.ServeFile(w, r, "src/login.html")
 }
 
-func style(w http.ResponseWriter, r *http.Request){
-	http.ServeFile(w, r, "src/assets/style.css")
+func form(w http.ResponseWriter, r *http.Request){
+	http.ServeFile(w, r, "src/form.html")
 }
 
+func style(w http.ResponseWriter, r *http.Request){
+	http.ServeFile(w, r, "src/assets/login.css")
+}
+
+func stylef(w http.ResponseWriter, r *http.Request){
+	http.ServeFile(w, r, "src/assets/stylef.css")
+}
 
 func main() {
+
+	router.HandleRoutes()
+
 	http.HandleFunc("/", index)
 
 	http.HandleFunc("/login", login)
 
+	http.HandleFunc("/form", form)
+
 	http.HandleFunc("/assets", style)
 
-	http.ListenAndServe(":80", nil)
+	http.HandleFunc("/assetsf", stylef)
+
+	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+
+	http.ListenAndServe(":8080", nil)
 }
